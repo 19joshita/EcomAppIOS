@@ -11,14 +11,19 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import AppNavigator from './src/navigator/AppNavigator';
+import { CartProvider } from './src/context/CartContext';
+import Toast from 'react-native-toast-message';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
-
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <CartProvider>
+        <AppNavigator />
+        <Toast />
+      </CartProvider>
     </SafeAreaProvider>
   );
 }
